@@ -1,6 +1,6 @@
 <template>
-  <aside>
-    <div class="flex flex-wrap bg-white rounded-[16px] p-5 max-w-[400px] overflow-hidden">
+  <aside class="bg-white rounded-[16px] p-5  overflow-hidden">
+    <div class="flex flex-wrap ">
       <div class="px-5 pr-9 flex items-center">
         <div class="block w-[74px] h-[74px] relative">
           <img
