@@ -14,7 +14,12 @@ import '@mdi/font/css/materialdesignicons.css'
 const vuetify = createVuetify({
   components,
   directives
-})
+});
+
+
+
+
+
 // tailwind css
 import './assets/styles/css/tailwind.css'
 import './assets/styles/scss/v-select-custom.scss';

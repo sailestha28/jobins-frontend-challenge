@@ -1,36 +1,49 @@
 <template>
   <div class="mt-4">
     <div class="mb-5 flex gap-x-4">
-      <div class="min-w-[150px]">
-        <v-select
-          v-model="status"
-          :items="statusData"
-          label=""
-          placeholder="Status: All"
-          density="compact"
-          class="normal-v-select"
-        >
-          <template v-slot:item="{ item, props }">
-            <v-list-item v-bind="props">
-              <template v-slot:title>
-                {{ item.raw }}
-              </template>
-            </v-list-item>
-          </template>
-        </v-select>
+      <div class="w-3/5 flex gap-x-4">
+        <div class="min-w-[150px]">
+          <v-select
+            v-model="filter.status"
+            :items="statusData"
+            label=""
+            placeholder="Status: All"
+            density="compact"
+            class="normal-v-select"
+          >
+            <template v-slot:item="{ item, props }">
+              <v-list-item v-bind="props">
+                <template v-slot:title>
+                  {{ item.raw }}
+                </template>
+              </v-list-item>
+            </template>
+          </v-select>
+        </div>
+        <div class="w-[200px]">
+          <v-text-field
+            v-model="filter.search"
+            density="compact"
+            variant="solo"
+            class="v-text-filed"
+            append-inner-icon="mdi-magnify"
+            placeholder="Search"
+            single-line
+            hide-details
+            @click:append-inner="() => onSearch"
+          ></v-text-field>
+        </div>
       </div>
-      <div class="w-[200px]">
-        <v-text-field
-          v-model="search"
-          density="compact"
-          variant="solo"
-         class="v-text-filed"
-          append-inner-icon="mdi-magnify"
-          placeholder="Search"
-          single-line
-          hide-details
-          @click:append-inner="() => onSearch"
-        ></v-text-field>
+      <div>
+        <!-- <v-date-picker v-model="filter.dateRange" range multiple></v-date-picker> -->
+        <!-- <VueDatePicker v-model="filter.dateRange" range ></VueDatePicker> -->
+        <!-- <VueDatePicker
+          v-model="filter.dateRange"
+          placeholder="Filter by date range"
+          range
+          fullscreen-mobile
+          validate
+        /> -->
       </div>
     </div>
     <v-data-table
@@ -42,23 +55,7 @@
       loading-text="Loading... Please wait"
       items-per-page="5"
     >
-      <!-- <template v-slot:top>
-        <v-toolbar>
-          <div class="filter-widget">
-            <div class="search-widget">
-              <input type="text" />
-            </div>
-            <div class="action">
-              <button class="btn btn-search">
-                <search-icon />
-              </button>
-            </div>
-            <router-link :to="{ name: 'ProductCreate' }" class="btn btn-primary"
-              >Add Product</router-link
-            >
-          </div>
-        </v-toolbar>
-      </template> -->
+    
       <template v-slot:column.id="{ column }">
         <span class="text-[#8B909A] text-base">
           {{ column.title.toUpperCase() }}
@@ -102,13 +99,17 @@
 
 <script>
 import { VDataTable } from "vuetify/labs/VDataTable";
+
 export default {
-  components: { VDataTable },
+  components: {
+    VDataTable,
+  },
   data() {
     return {
+      filter: { status: null, search: null, dateRange: null },
       itemsPerPage: 5,
       loading: false,
-      status: null,
+
       statusData: ["All", "Active", "Pending", "Cancelled", "Completed"],
       headers: [
         {
