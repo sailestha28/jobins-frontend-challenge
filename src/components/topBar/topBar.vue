@@ -39,7 +39,7 @@ import NotificationIcon from "../icons/topbar/NotificationIcon.vue";
 export default {
   name: "TopBar",
   mounted() {
-    console.log("router", this.$route);
+    // console.log("router", this.$route);
   },
   computed: {
     title() {

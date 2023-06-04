@@ -23,10 +23,10 @@ export default {
         black: '#191919',
         'black-2': '#000000',
         'black-3': '#555555',
-        red: '#FF0000',
+        red: '#EA5455',
         'dark-red': '#BE1E2D',
-        yellow: '#F9A400',
-        green: '#1CA510',
+        yellow: '#FFC600',
+        green: '#28C76F',
         gray: '#9D9D9D',
         'gray-2': '#999999',
         'gray-1': '#D9D9D9',
@@ -50,7 +50,7 @@ export default {
         xlg: '1130px',
         xl: '1280px',
         xxl: '1339px',
-        '2xl': '1536px'
+        xxxl: '1536px'
       },
       boxShadow: {
         '3xl': '2px 2px 10px rgba(0, 0, 0, 0.08)'

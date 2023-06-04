@@ -26,8 +26,12 @@
   </aside>
 </template>
 
+
 <script>
-export default {};
+import upArrowIcon from "../../icons/dashboard/upArrowIcon.vue";
+export default {
+  components: { upArrowIcon },
+};
 </script>
 
 <style></style>
