@@ -34,28 +34,28 @@
           ></v-text-field>
         </div>
       </div>
-      <div>
-        <!-- <v-date-picker v-model="filter.dateRange" range multiple></v-date-picker> -->
-        <!-- <VueDatePicker v-model="filter.dateRange" range ></VueDatePicker> -->
-        <!-- <VueDatePicker
-          v-model="filter.dateRange"
-          placeholder="Filter by date range"
-          range
-          fullscreen-mobile
-          validate
-        /> -->
+      <div class="flex justify-end w-full">
+  
+        <div class="w-[250px]">
+          <VueDatePicker
+            class="vue_date_picker"
+            placeholder="Filter by date range"
+            v-model="filter.dateRange"
+            format="dd MMMM, yyyy - dd MMMM, yyyy"
+            range
+          />
+        </div>
       </div>
     </div>
     <v-data-table
       :headers="headers"
       :items="tableData"
-      class="text-[#23272E] text-[15px] rounded-10 overflow-hidden bg-transparent"
+      class="text-[#23272E] text-[15px] rounded-10 rounded-bl-[0px] rounded-br-[0px] overflow-hidden bg-transparent"
       item-key="name"
       :loading="loading"
       loading-text="Loading... Please wait"
       items-per-page="5"
     >
-    
       <template v-slot:column.id="{ column }">
         <span class="text-[#8B909A] text-base">
           {{ column.title.toUpperCase() }}
@@ -99,10 +99,12 @@
 
 <script>
 import { VDataTable } from "vuetify/labs/VDataTable";
-
+import VueDatePicker from "@vuepic/vue-datepicker";
+import "@vuepic/vue-datepicker/dist/main.css";
 export default {
   components: {
     VDataTable,
+    VueDatePicker,
   },
   data() {
     return {

@@ -22,8 +22,10 @@ const vuetify = createVuetify({
 
 // tailwind css
 import './assets/styles/css/tailwind.css'
+import './assets/styles/scss/vuetify-custom.scss';
 import './assets/styles/scss/v-select-custom.scss';
 import './assets/styles/scss/v-text-field-custom.scss';
+import './assets/styles/scss/vue-date-picker-custom.scss';
 
 const app = createApp(App)
 
