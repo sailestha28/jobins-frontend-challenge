@@ -35,7 +35,6 @@
         </div>
       </div>
       <div class="flex justify-end w-full">
-  
         <div class="w-[250px]">
           <VueDatePicker
             class="vue_date_picker"
@@ -79,16 +78,27 @@
           {{ column.title.toUpperCase() }}
         </span>
       </template>
+
       <template v-slot:column.action="{ column }">
         <span class="text-[#8B909A] text-sm">
           {{ column.title.toUpperCase() }}
         </span>
       </template>
-
+      <template v-slot:item.state="{ item }">
+        <span
+          :class="[
+            item.selectable.state.toLowerCase() === 'pending' ? 'text-[#FFC600]' : null,
+            item.selectable.state.toLowerCase() === 'cancelled' ? 'text-[#EA5455]' : null,
+            item.selectable.state.toLowerCase() === 'completed' ? 'text-[#28C76F]' : null,
+          ]"
+        >
+          {{ item.selectable.state }}
+        </span>
+      </template>
       <template v-slot:item.action="{ item }">
-        <div class="action">
-          <button class="btn btn-edit" @click.prevent="() => onAdd(item)">View</button>
-          <button class="btn btn-delete" @click.prevent="() => deleteItem(item)">
+        <div class="flex gap-x-1">
+          <button class="text-[#0F60FF]" @click.prevent="() => onView(item.columns)">View</button>
+          <button class="text-[#0F60FF]" @click.prevent="() => onDetail(item.columns)">
             Detail
           </button>
         </div>
@@ -124,6 +134,7 @@ export default {
         { title: "Date", align: "start", key: "date" },
         { title: "Total", align: "start", key: "total" },
         { title: "Method", align: "start", key: "method" },
+        { title: "Status", align: "start", key: "state" },
         { title: "Action", align: "start", key: "action" },
       ],
       tableData: [
@@ -132,6 +143,7 @@ export default {
           customer: "Joseph Wheeler",
           date: "6 April, 2023",
           total: "$2,564",
+          state: "Pending",
           method: "CC",
         },
         {
@@ -139,6 +151,7 @@ export default {
           customer: "Joseph Wheeler",
           date: "6 April, 2023",
           total: "$2,564",
+          state: "Cancelled",
           method: "CC",
         },
         {
@@ -146,6 +159,7 @@ export default {
           customer: "Joseph Wheeler",
           date: "6 April, 2023",
           total: "$2,564",
+          state: "Completed",
           method: "CC",
         },
         {
@@ -153,6 +167,7 @@ export default {
           customer: "Joseph Wheeler",
           date: "6 April, 2023",
           total: "$2,564",
+          state: "Pending",
           method: "CC",
         },
         {
@@ -160,6 +175,7 @@ export default {
           customer: "Joseph Wheeler",
           date: "6 April, 2023",
           total: "$2,564",
+          state: "Pending",
           method: "CC",
         },
         {
@@ -167,6 +183,7 @@ export default {
           customer: "Joseph Wheeler",
           date: "6 April, 2023",
           total: "$2,564",
+          state: "Pending",
           method: "CC",
         },
         {
@@ -174,6 +191,7 @@ export default {
           customer: "Joseph Wheeler",
           date: "6 April, 2023",
           total: "$2,564",
+          state: "Cancelled",
           method: "CC",
         },
         {
@@ -181,6 +199,7 @@ export default {
           customer: "Joseph Wheeler",
           date: "6 April, 2023",
           total: "$2,564",
+          state: "Pending",
           method: "CC",
         },
         {
@@ -188,6 +207,7 @@ export default {
           customer: "Joseph Wheeler",
           date: "6 April, 2023",
           total: "$2,564",
+          state: "Pending",
           method: "CC",
         },
         {
@@ -195,6 +215,7 @@ export default {
           customer: "Joseph Wheeler",
           date: "6 April, 2023",
           total: "$2,564",
+          state: "Pending",
           method: "CC",
         },
         {
@@ -202,6 +223,7 @@ export default {
           customer: "Joseph Wheeler",
           date: "6 April, 2023",
           total: "$2,564",
+          state: "Pending",
           method: "CC",
         },
         {
@@ -209,6 +231,7 @@ export default {
           customer: "Joseph Wheeler",
           date: "6 April, 2023",
           total: "$2,564",
+          state: "Completed",
           method: "CC",
         },
         {
@@ -216,6 +239,7 @@ export default {
           customer: "Joseph Wheeler",
           date: "6 April, 2023",
           total: "$2,564",
+          state: "Pending",
           method: "CC",
         },
         {
@@ -223,6 +247,7 @@ export default {
           customer: "Joseph Wheeler",
           date: "6 April, 2023",
           total: "$2,564",
+          state: "Pending",
           method: "CC",
         },
       ],
@@ -232,6 +257,12 @@ export default {
     onSearch() {
       console.log("click search");
     },
+    onDetail(data){
+      console.log(data);
+    },
+    onView(data){
+      console.log(data);
+    }
   },
 };
 </script>
