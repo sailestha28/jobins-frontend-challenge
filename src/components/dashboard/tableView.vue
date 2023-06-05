@@ -97,7 +97,9 @@
       </template>
       <template v-slot:item.action="{ item }">
         <div class="flex gap-x-1">
-          <button class="text-[#0F60FF]" @click.prevent="() => onView(item.columns)">View</button>
+          <button class="text-[#0F60FF]" @click.prevent="() => onView(item.columns)">
+            View
+          </button>
           <button class="text-[#0F60FF]" @click.prevent="() => onDetail(item.columns)">
             Detail
           </button>
@@ -112,32 +114,45 @@ import { VDataTable } from "vuetify/labs/VDataTable";
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
 export default {
+  props: { column: Array, filterValue: String },
   components: {
     VDataTable,
     VueDatePicker,
+  },
+  watch: {
+    column: function (newValue, oldValue) {
+      this.headers = newValue;
+    },
+    filterValue: function (newValue, oldValue) {
+      this.getDataOnFilter();
+    },
   },
   data() {
     return {
       filter: { status: null, search: null, dateRange: null },
       itemsPerPage: 5,
       loading: false,
-
+      headers: this.column || [],
       statusData: ["All", "Active", "Pending", "Cancelled", "Completed"],
-      headers: [
-        {
-          title: "ID",
-          align: "start",
-          sortable: false,
-          key: "id",
-        },
-        { title: "Customer", align: "start", key: "customer" },
-        { title: "Date", align: "start", key: "date" },
-        { title: "Total", align: "start", key: "total" },
-        { title: "Method", align: "start", key: "method" },
-        { title: "Status", align: "start", key: "state" },
-        { title: "Action", align: "start", key: "action" },
-      ],
-      tableData: [
+      tableData: [],
+    };
+  },
+  mounted() {
+    console.log(this.filterValue);
+    this.getDataOnFilter();
+  },
+  methods: {
+    onSearch() {
+      console.log("click search");
+    },
+    onDetail(data) {
+      console.log(data);
+    },
+    onView(data) {
+      console.log(data);
+    },
+    getDataOnFilter() {
+      const tableArray = [
         {
           id: "#5089",
           customer: "Joseph Wheeler",
@@ -167,7 +182,7 @@ export default {
           customer: "Joseph Wheeler",
           date: "6 April, 2023",
           total: "$2,564",
-          state: "Pending",
+          state: "Completed",
           method: "CC",
         },
         {
@@ -183,7 +198,7 @@ export default {
           customer: "Joseph Wheeler",
           date: "6 April, 2023",
           total: "$2,564",
-          state: "Pending",
+          state: "Completed",
           method: "CC",
         },
         {
@@ -250,19 +265,29 @@ export default {
           state: "Pending",
           method: "CC",
         },
-      ],
-    };
-  },
-  methods: {
-    onSearch() {
-      console.log("click search");
+      ];
+      if (this.filterValue === "all") {
+        this.loading = true;
+        setTimeout(() => {
+          this.tableData = tableArray;
+          this.loading = false;
+        }, 1000);
+      } else if (this.filterValue === "completed") {
+        this.loading = true;
+        setTimeout(() => {
+          const completedData = tableArray.filter((item) => item.state === "Completed");
+          this.tableData = completedData;
+          this.loading = false;
+        }, 1000);
+      } else {
+        this.loading = true;
+        setTimeout(() => {
+          const calcelledData = tableArray.filter((item) => item.state === "Cancelled");
+          this.tableData = calcelledData;
+          this.loading = false;
+        }, 1000);
+      }
     },
-    onDetail(data){
-      console.log(data);
-    },
-    onView(data){
-      console.log(data);
-    }
   },
 };
 </script>

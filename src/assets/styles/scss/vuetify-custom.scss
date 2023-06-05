@@ -16,3 +16,19 @@ body .v-data-table {
     justify-content: flex-end;
   }
 }
+
+.v-slide-group__container {
+  .v-btn {
+    color: #8B909A;
+    font-weight: normal;
+    text-transform: capitalize;
+  }
+
+  .v-tab--selected {
+    color: #0F60FF;
+  }
+
+  .v-tab__slider {
+    background-color: #0F60FF;
+  }
+}
