@@ -1,9 +1,17 @@
 <template>
   <header>
     <div class="py-5 flex justify-between items-center">
+    <div class="flex items-center gap-x-2">
+    <button class="xlg:hidden" @click="toggleMenu">
+      <v-icon dark>
+        mdi-format-list-bulleted-square
+      </v-icon>
+    </button>
+
       <h1 class="text-[#23272E] font-bold">
         {{ title }}
       </h1>
+          </div>
       <div class="flex items-center gap-x-6">
         <div class="relative">
           <NotificationIcon />
@@ -35,12 +43,10 @@
 
 <script>
 import NotificationIcon from "../icons/topbar/NotificationIcon.vue";
-
+import { mapState, mapMutations } from "vuex";
 export default {
   name: "TopBar",
-  mounted() {
-    // console.log("router", this.$route);
-  },
+
   computed: {
     title() {
       let componentTitle = null;
@@ -57,8 +63,24 @@ export default {
       }
       return componentTitle;
     },
+     ...mapState(["isMenuOpen"]),
   },
   components: { NotificationIcon },
+  mounted() {
+    this.loadMenuState();
+  },
+  methods: {
+        ...mapMutations(["toggleMenu"]),
+    saveMenuState() {
+      localStorage.setItem("isMenuOpen", JSON.stringify(this.isMenuOpen));
+    },
+    loadMenuState() {
+      const savedState = localStorage.getItem("isMenuOpen");
+      if (savedState !== null) {
+        this.$store.state.isMenuOpen = JSON.parse(savedState);
+      }
+    },
+  },
 };
 </script>
 

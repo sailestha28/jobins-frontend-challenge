@@ -11,8 +11,8 @@ import SideBar from "../components/sideBar/sideBar.vue";
       :class="[
         'overflow-y-auto h-[100vh] transition-all duration-500',
         !this.$store.state.isMenuOpen
-          ? 'w-[calc(100%-260px)] ml-[260px]'
-          : 'ml-[110px] w-[calc(100%-110px)]',
+          ? 'xlg:w-[calc(100%-260px)] xlg:ml-[260px]'
+          : 'xlg:ml-[110px] xlg:w-[calc(100%-110px)]',
       ]"
     >
       <TopBar />

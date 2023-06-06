@@ -6,6 +6,7 @@ import OrderIcon from "../icons/sidebarIcons/order-icon.vue";
 import BrandIcon from "../icons/sidebarIcons/brand-icon.vue";
 import ProductAddIcon from "../icons/sidebarIcons/product-add-icon.vue";
 import ProductBoxIcon from "../icons/sidebarIcons/product-box-icon.vue";
+import CloseIcon from "../icons/sidebarIcons/close-icon.vue";
 </script>
 
 <script>
@@ -77,20 +78,29 @@ export default {
       }
     },
   },
-  components: { DashboardIcon, OrderIcon, BrandIcon, ProductAddIcon, ProductBoxIcon },
+  components: {
+    DashboardIcon,
+    OrderIcon,
+    BrandIcon,
+    ProductAddIcon,
+    ProductBoxIcon,
+    CloseIcon,
+  },
 };
 </script>
 
 <template>
   <nav
     :class="[
-      isMenuOpen ? 'w-[110px]' : 'w-[260px]',
-      ' fixed top-0 left-0 h-full z-10 bg-white transition-all duration-500',
+      isMenuOpen
+        ? 'translate-x-[-110%] xlg:translate-x-0 w-[260px] xlg:w-[110px]'
+        : 'w-[260px] xlg:translate-x-0',
+      ' fixed top-0 left-0 h-full z-10 bg-white transition-all duration-500 shadow-[0px_0_15px_0px_#0000002b] xlg:shadow-none',
     ]"
   >
     <div class="min-w-[110px] overflow-hidden">
       <div class="px-[18px] py-5">
-        <div class="flex flex-wrap justify-between">
+        <div class="flex flex-wrap items-center justify-between">
           <router-link to="/" class="flex w-12 min-h-[34px]">
             <img
               alt="logo"
@@ -103,16 +113,21 @@ export default {
               <span
                 v-if="!isMenuOpen"
                 :class="[
-                  isMenuOpen ? 'text-0' : 'text-[22px] font-semibold text-[#23272E]',
+                  isMenuOpen ? ' xlg:text-0' : 'text-[22px] font-semibold text-[#23272E]',
                 ]"
               >
                 JoBins
               </span>
             </transition>
           </router-link>
-          <div class="w-6">
+          <div class="w-6 flex items-center">
             <button type="button" @click="toggleMenu" class="bg-white">
-              <div class="flex items-center justify-center">
+              <div
+                class="flex items-center xlg:hidden max-w-[32px] max-h-[32px] overflow-hidden"
+              >
+                <CloseIcon />
+              </div>
+              <div class="hidden xlg:flex items-center justify-center">
                 <span class="relative left-1">
                   <span class="inline-block" :class="[isMenuOpen ? 'rotate-180' : '']">
                     <LeftIcon />
@@ -148,6 +163,7 @@ export default {
               ' items-center px-4 py-2 hover:text-[#23272E] hover:stroke-black',
               !isMenuOpen ? 'flex gap-x-2' : 'inline-flex',
             ]"
+            @click.native="() => toggleMenu()"
           >
             <span :class="'icon ' + item.icon">
               <template v-if="item.icon === 'icon_dashboard'">
