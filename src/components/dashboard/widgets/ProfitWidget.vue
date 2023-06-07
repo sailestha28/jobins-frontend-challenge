@@ -10,10 +10,10 @@
       </div>
       <div>
         <p class="text-[#23272E] text-[18px] font-semibold">Total Profit</p>
-        <label class="text-[#8B909A] text-sm block mb-7"> Last 7 days </label>
+        <label class="text-[#8B909A] text-sm block mb-4 sml:mb-7"> Last 7 days </label>
       </div>
       <div class="w-full">
-        <h2 class="text-[#23272E] text-[32px] mb-2 font-bold">50K</h2>
+        <h2 class="text-[#23272E] text-2xl sml:text-[32px] mb-2 font-bold">50K</h2>
         <div class="flex items-center text-sm">
           <span class="text-[#1eb564] flex">
             <span class="relative top-[3px] mr-1"><up-arrow-icon /></span>

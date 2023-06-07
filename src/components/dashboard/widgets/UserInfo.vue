@@ -1,7 +1,7 @@
 <template>
   <aside class="bg-white rounded-[16px] gap-x-4 p-5 px-6 overflow-hidden">
     <div class="flex flex-wrap">
-      <div class="w-1/3 px-5 flex items-center">
+      <div class="w-full mb-5 sml:mb-0 sml:w-1/3 sm:px-5 flex items-center">
         <div class="flex gap-x-4 items-center">
           <div class="w-[72px] h-[72px] relative rounded-full overflow-hidden">
             <img
@@ -16,10 +16,10 @@
           </div>
         </div>
       </div>
-      <div class="w-1/3 relative">
-        <div class="bg-[#DBDADE] absolute left-0 top-0 w-[1px] h-[calc(100%)]"></div>
-        <div class="bg-[#DBDADE] absolute right-0 top-0 w-[1px] h-[calc(100%)]"></div>
-        <div class="border-l border-r border-[#DBDADE] px-5">
+      <div class="w-full sm:w-1/2 sml:w-1/3 relative">
+        <div class="hidden sml:block bg-[#DBDADE] absolute left-0 top-0 w-[1px] h-[calc(100%)]"></div>
+        <div class="hidden sm:block bg-[#DBDADE] absolute right-0 top-0 w-[1px] h-[calc(100%)]"></div>
+        <div class=" sm:px-5">
           <h2 class="uppercase text-[#8B909A] text-[13px] mb-2">PERSONAL INFORMATION</h2>
           <div class="text-[#23272E] text-sm">
             <div class="mb-2">
@@ -37,7 +37,7 @@
           </div>
         </div>
       </div>
-      <div class="w-1/3 px-5">
+      <div class="mt-4 sm:mt-0 w-full sm:w-1/2 sml:w-1/3 sm:px-5">
         <h2 class="uppercase text-[#8B909A] text-[13px] mb-2">Shipping Address</h2>
         <p class="text-[#23272E] text-sm">3517 W. Gray St. Utica, Pennsylvania 57867</p>
         <ul class="flex justify-between mt-5">
@@ -62,11 +62,10 @@
         </ul>
       </div>
     </div>
-    <v-tabs v-model="tab" align-with-title>
+    <v-tabs v-model="tab" align-with-title :swipeable="false" class="mt-3 sml:mt-2">
       <v-tab value="all">All Orders</v-tab>
       <v-tab value="completed">Completed</v-tab>
       <v-tab value="cancelled">Cancelled</v-tab>
-      <v-tabs-slider color="yellow"></v-tabs-slider>
     </v-tabs>
   </aside>
 </template>

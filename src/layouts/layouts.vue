@@ -7,7 +7,7 @@ import SideBar from "../components/sideBar/sideBar.vue";
     <SideBar />
     <main
       role="main"
-      class="px-7 "
+      class="px-4 sm:px-7"
       :class="[
         'overflow-y-auto h-[100vh] transition-all duration-500',
         !this.$store.state.isMenuOpen
@@ -16,7 +16,9 @@ import SideBar from "../components/sideBar/sideBar.vue";
       ]"
     >
       <TopBar />
-      <router-view></router-view>
+      <div class="mb-5 sm:mb-7">
+        <router-view></router-view>
+      </div>
     </main>
   </div>
 </template>

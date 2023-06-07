@@ -1,7 +1,7 @@
 <template>
-  <div class="mt-4">
-    <div class="mb-5 flex gap-x-4">
-      <div class="w-3/5 flex gap-x-4">
+  <div class="mt-3">
+    <div class="mb-5 flex flex-wrap sm:flex-nowrap gap-x-4">
+      <div class="mb-5 sm:mb-0 w-full sm:w-3/5 flex gap-x-4">
         <div class="min-w-[150px]">
           <v-select
             v-model="filter.status"
@@ -34,8 +34,8 @@
           ></v-text-field>
         </div>
       </div>
-      <div class="flex justify-end w-full">
-        <div class="w-[250px]">
+      <div class="flex sm:justify-end w-full">
+        <div class="w-full max-w-[350px] sm:w-[250px]">
           <VueDatePicker
             class="vue_date_picker"
             placeholder="Filter by date range"
@@ -53,7 +53,13 @@
       item-key="name"
       :loading="loading"
       loading-text="Loading... Please wait"
-      items-per-page="5"
+      :items-per-page="itemsPerPage"
+      :mobile-breakpoint="950"
+      v-model:page="page"
+      :search="filter.search"
+      :footer-props="{
+        'items-per-page-text': 'products per page',
+      }"
     >
       <template v-slot:column.id="{ column }">
         <span class="text-[#8B909A] text-base">
@@ -105,6 +111,30 @@
           </button>
         </div>
       </template>
+
+      <template v-slot:bottom>
+        <div class="flex justify-between bg-white border-lb-[20px] vDataTable_footer">
+          <div class="w-[300px] flex items-center gap-x-2">
+            <p class="text-[#8B909A] text-xs">Showing</p>
+            <v-select
+              v-model="itemsPerPage"
+              :items="perPageOptions"
+              label=""
+              placeholder="Status: All"
+              density="compact"
+              class="normal-v-select"
+            ></v-select>
+            <span class="text-[#8B909A] text-xs"> of {{ tableData.length }} </span>
+          </div>
+
+          <v-pagination
+            class="text-xs"
+            v-model="page"
+            :length="pageCount"
+            :total-visible="5"
+          ></v-pagination>
+        </div>
+      </template>
     </v-data-table>
   </div>
 </template>
@@ -126,20 +156,30 @@ export default {
     filterValue: function (newValue, oldValue) {
       this.getDataOnFilter();
     },
+    itemsPerPage: function (newValue, oldValue) {
+      this.getDataOnFilter();
+    },
   },
   data() {
     return {
       filter: { status: null, search: null, dateRange: null },
-      itemsPerPage: 5,
+      page: 1,
+      itemsPerPage: 10,
+      perPageOptions: [5, 10, 15, 20, 25, 50],
       loading: false,
       headers: this.column || [],
       statusData: ["All", "Active", "Pending", "Cancelled", "Completed"],
       tableData: [],
+      pageCount: null,
     };
   },
   mounted() {
-    console.log(this.filterValue);
     this.getDataOnFilter();
+  },
+  computed: {
+    // pageCount() {
+    //   return Math.ceil(this.tableData.length / this.itemsPerPage);
+    // },
   },
   methods: {
     onSearch() {
@@ -155,7 +195,7 @@ export default {
       const tableArray = [
         {
           id: "#5089",
-          customer: "Joseph Wheeler",
+          customer: "Joseph Doe",
           date: "6 April, 2023",
           total: "$2,564",
           state: "Pending",
@@ -163,7 +203,71 @@ export default {
         },
         {
           id: "#5090",
-          customer: "Joseph Wheeler",
+          customer: "Joseph Xin",
+          date: "6 April, 2023",
+          total: "$2,564",
+          state: "Cancelled",
+          method: "CC",
+        },
+        {
+          id: "#5089",
+          customer: "Joseph Doe",
+          date: "6 April, 2023",
+          total: "$2,564",
+          state: "Pending",
+          method: "CC",
+        },
+        {
+          id: "#5090",
+          customer: "Joseph Xin",
+          date: "6 April, 2023",
+          total: "$2,564",
+          state: "Cancelled",
+          method: "CC",
+        },
+        {
+          id: "#5089",
+          customer: "Joseph Doe",
+          date: "6 April, 2023",
+          total: "$2,564",
+          state: "Pending",
+          method: "CC",
+        },
+        {
+          id: "#5090",
+          customer: "Joseph Xin",
+          date: "6 April, 2023",
+          total: "$2,564",
+          state: "Cancelled",
+          method: "CC",
+        },
+        {
+          id: "#5089",
+          customer: "Joseph Doe",
+          date: "6 April, 2023",
+          total: "$2,564",
+          state: "Pending",
+          method: "CC",
+        },
+        {
+          id: "#5090",
+          customer: "Joseph Xin",
+          date: "6 April, 2023",
+          total: "$2,564",
+          state: "Cancelled",
+          method: "CC",
+        },
+        {
+          id: "#5089",
+          customer: "Joseph Doe",
+          date: "6 April, 2023",
+          total: "$2,564",
+          state: "Pending",
+          method: "CC",
+        },
+        {
+          id: "#5090",
+          customer: "Joseph Xin",
           date: "6 April, 2023",
           total: "$2,564",
           state: "Cancelled",
@@ -171,7 +275,7 @@ export default {
         },
         {
           id: "#5091",
-          customer: "Joseph Wheeler",
+          customer: "Jhon Doe",
           date: "6 April, 2023",
           total: "$2,564",
           state: "Completed",
@@ -185,14 +289,7 @@ export default {
           state: "Completed",
           method: "CC",
         },
-        {
-          id: "#5093",
-          customer: "Joseph Wheeler",
-          date: "6 April, 2023",
-          total: "$2,564",
-          state: "Pending",
-          method: "CC",
-        },
+
         {
           id: "#5089",
           customer: "Joseph Wheeler",
@@ -271,6 +368,7 @@ export default {
         setTimeout(() => {
           this.tableData = tableArray;
           this.loading = false;
+          this.pageCount = Math.ceil(this.tableData.length / this.itemsPerPage);
         }, 1000);
       } else if (this.filterValue === "completed") {
         this.loading = true;
@@ -278,6 +376,7 @@ export default {
           const completedData = tableArray.filter((item) => item.state === "Completed");
           this.tableData = completedData;
           this.loading = false;
+          this.pageCount = Math.ceil(this.tableData.length / this.itemsPerPage);
         }, 1000);
       } else {
         this.loading = true;
@@ -285,6 +384,7 @@ export default {
           const calcelledData = tableArray.filter((item) => item.state === "Cancelled");
           this.tableData = calcelledData;
           this.loading = false;
+          this.pageCount = Math.ceil(this.tableData.length / this.itemsPerPage);
         }, 1000);
       }
     },

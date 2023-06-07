@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <v-window v-model="tab">
+    <v-window v-model="tab" touchless>
       <v-window-item value="all">
         <TableView :column="headers" :filterValue="tab" />
       </v-window-item>
@@ -40,12 +40,13 @@ export default {
           align: "start",
           sortable: false,
           key: "id",
+          width:'85px'
         },
-        { title: "Customer", align: "start", key: "customer" },
-        { title: "Date", align: "start", key: "date" },
-        { title: "Total", align: "start", key: "total" },
-        { title: "Method", align: "start", key: "method" },
-        { title: "Status", align: "start", key: "state" },
+        { title: "Customer", align: "start", key: "customer",      width:'200px' },
+        { title: "Date", align: "start", key: "date", width:'135px' },
+        { title: "Total", align: "start", key: "total" ,width:'115px'},
+        { title: "Method", align: "start", key: "method", width:'100px' },
+        { title: "Status", align: "start", key: "state", width:'140px' },
         { title: "Action", align: "start", key: "action" },
       ],
     };
