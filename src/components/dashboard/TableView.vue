@@ -12,7 +12,7 @@
             class="normal-v-select"
           >
             <template v-slot:item="{ item, props }">
-              <v-list-item v-bind="props">
+              <v-list-item v-bind="props"   @click.prevent="()=>getDataOnStatus(filter.status)">
                 <template v-slot:title>
                   {{ item.raw }}
                 </template>
@@ -30,7 +30,7 @@
             placeholder="Search"
             single-line
             hide-details
-            @click:append-inner="() => onSearch"
+             @change.prevent="()=>getDataOnSearch(filter.search)"
           ></v-text-field>
         </div>
       </div>
@@ -101,6 +101,13 @@
           {{ item.selectable.state }}
         </span>
       </template>
+
+      <template v-slot:item.date="{ item }">
+        <div class="flex gap-x-1">
+        <!-- {{ item?.selectable?.date | formatDate }} -->
+        {{ formatDate(item?.selectable?.date)  }}
+        </div>
+      </template>
       <template v-slot:item.action="{ item }">
         <div class="flex gap-x-1">
           <button class="text-[#0F60FF]" @click.prevent="() => onView(item.columns)">
@@ -140,6 +147,7 @@
 </template>
 
 <script>
+ import moment from 'moment';
 import { VDataTable } from "vuetify/labs/VDataTable";
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
@@ -179,12 +187,12 @@ export default {
   mounted() {
     this.getDataOnFilter();
   },
-  computed: {
-    // pageCount() {
-    //   return Math.ceil(this.tableData.length / this.itemsPerPage);
-    // },
-  },
+
   methods: {
+    formatDate(value) {
+   if (!value) return '';
+        return moment(String(value)).format("D MMMM, YYYY");
+  },
     onSearch() {
             setTimeout(() => {
         const filterData = this.onData.filter((item) =>
@@ -237,6 +245,37 @@ export default {
           this.pageCount = Math.ceil(this.tableData.length / this.itemsPerPage);
         }, 1000);
       }
+    },
+     getDataOnStatus(filterByValue) {
+      const tableArray = this.onData;
+         this.loading = true;
+         if(filterByValue.toLowerCase() === 'all'){
+           setTimeout(() => {
+          this.tableData = tableArray;
+          this.loading = false;
+          this.pageCount = Math.ceil(this.tableData.length / this.itemsPerPage);
+        }, 1000);
+      }else{
+            setTimeout(() => {
+          const filterData = this.onData.filter((item) => item.state.toLowerCase() === filterByValue.toLowerCase());
+          this.tableData = filterData;
+          this.pageCount = Math.ceil(this.tableData.length / this.itemsPerPage);
+          this.loading = false;
+        }, 1000);
+      }
+       
+    },
+     getDataOnSearch(filterByValue) {
+      if(filterByValue != "" || filterByValue != null){
+        const tableArray = this.onData;
+        this.loading = true;
+        setTimeout(() => {
+          this.tableData = this.onData.filter((item) => item.customer.toLowerCase().includes(filterByValue.toLowerCase()));
+          this.pageCount = Math.ceil(this.tableData.length / this.itemsPerPage);
+          this.loading = false;
+        }, 1000);
+      }
+       
     },
   },
 };

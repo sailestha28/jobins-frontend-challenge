@@ -1,4 +1,5 @@
-import { createApp } from 'vue'
+import { createApp } from 'vue';
+
 // Vuetify
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
@@ -16,12 +17,6 @@ import store from './store/store'
 import App from './App.vue'
 
 
-
-
-
-
-
-
 // tailwind css
 import './assets/styles/css/tailwind.css'
 import './assets/styles/scss/vuetify-custom.scss';
@@ -29,6 +24,6 @@ import './assets/styles/scss/v-select-custom.scss';
 import './assets/styles/scss/v-text-field-custom.scss';
 import './assets/styles/scss/vue-date-picker-custom.scss';
 
-const app = createApp(App)
+const app = createApp(App);
 
 app.use(router).use(store).use(vuetify).mount('#app')
