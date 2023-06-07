@@ -1,15 +1,17 @@
 <template>
   <header>
     <div class="py-5 flex justify-between items-center">
-      <div class="flex items-center gap-x-2">
-        <button class="xlg:hidden" @click="toggleMenu">
-          <v-icon dark> mdi-format-list-bulleted-square </v-icon>
-        </button>
+    <div class="flex items-center gap-x-2">
+    <button class="xlg:hidden" @click="toggleMenu">
+      <v-icon dark>
+        mdi-format-list-bulleted-square
+      </v-icon>
+    </button>
 
-        <h1 class="text-[#23272E] font-bold">
-          {{ title }}
-        </h1>
-      </div>
+      <h1 class="text-[#23272E] font-bold">
+        {{ title }}
+      </h1>
+          </div>
       <div class="flex items-center gap-x-6">
         <div class="relative">
           <NotificationIcon />
@@ -61,14 +63,14 @@ export default {
       }
       return componentTitle;
     },
-    ...mapState(["isMenuOpen"]),
+     ...mapState(["isMenuOpen"]),
   },
   components: { NotificationIcon },
   mounted() {
     this.loadMenuState();
   },
   methods: {
-    ...mapMutations(["toggleMenu"]),
+        ...mapMutations(["toggleMenu"]),
     saveMenuState() {
       localStorage.setItem("isMenuOpen", JSON.stringify(this.isMenuOpen));
     },
@@ -81,3 +83,5 @@ export default {
   },
 };
 </script>
+
+<style></style>
