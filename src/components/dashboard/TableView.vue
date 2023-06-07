@@ -143,6 +143,8 @@
 import { VDataTable } from "vuetify/labs/VDataTable";
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
+import { Data } from "@/Data/data.js";
+
 export default {
   props: { column: Array, filterValue: String },
   components: {
@@ -162,13 +164,14 @@ export default {
   },
   data() {
     return {
+      onData: Data,
       filter: { status: null, search: null, dateRange: null },
       page: 1,
       itemsPerPage: 10,
       perPageOptions: [5, 10, 15, 20, 25, 50],
       loading: false,
       headers: this.column || [],
-      statusData: ["All", "Active", "Pending", "Cancelled", "Completed"],
+      statusData: ["All", "Pending", "Cancelled", "Completed"],
       tableData: [],
       pageCount: null,
     };
@@ -183,7 +186,15 @@ export default {
   },
   methods: {
     onSearch() {
-      console.log("click search");
+            setTimeout(() => {
+        const filterData = this.onData.filter((item) =>
+          item.customer.toLowerCase().includes(this.filter.search.toLowerCase())
+        );
+        console.log(this.filter.search);
+        console.log(filterData);
+        this.tableData = filterData;
+        this.pageCount = Math.ceil(this.tableData.length / this.itemsPerPage);
+      }, 10);
     },
     onDetail(data) {
       console.log(data);
@@ -191,178 +202,9 @@ export default {
     onView(data) {
       console.log(data);
     },
-    getDataOnFilter() {
-      const tableArray = [
-        {
-          id: "#5089",
-          customer: "Joseph Doe",
-          date: "6 April, 2023",
-          total: "$2,564",
-          state: "Pending",
-          method: "CC",
-        },
-        {
-          id: "#5090",
-          customer: "Joseph Xin",
-          date: "6 April, 2023",
-          total: "$2,564",
-          state: "Cancelled",
-          method: "CC",
-        },
-        {
-          id: "#5089",
-          customer: "Joseph Doe",
-          date: "6 April, 2023",
-          total: "$2,564",
-          state: "Pending",
-          method: "CC",
-        },
-        {
-          id: "#5090",
-          customer: "Joseph Xin",
-          date: "6 April, 2023",
-          total: "$2,564",
-          state: "Cancelled",
-          method: "CC",
-        },
-        {
-          id: "#5089",
-          customer: "Joseph Doe",
-          date: "6 April, 2023",
-          total: "$2,564",
-          state: "Pending",
-          method: "CC",
-        },
-        {
-          id: "#5090",
-          customer: "Joseph Xin",
-          date: "6 April, 2023",
-          total: "$2,564",
-          state: "Cancelled",
-          method: "CC",
-        },
-        {
-          id: "#5089",
-          customer: "Joseph Doe",
-          date: "6 April, 2023",
-          total: "$2,564",
-          state: "Pending",
-          method: "CC",
-        },
-        {
-          id: "#5090",
-          customer: "Joseph Xin",
-          date: "6 April, 2023",
-          total: "$2,564",
-          state: "Cancelled",
-          method: "CC",
-        },
-        {
-          id: "#5089",
-          customer: "Joseph Doe",
-          date: "6 April, 2023",
-          total: "$2,564",
-          state: "Pending",
-          method: "CC",
-        },
-        {
-          id: "#5090",
-          customer: "Joseph Xin",
-          date: "6 April, 2023",
-          total: "$2,564",
-          state: "Cancelled",
-          method: "CC",
-        },
-        {
-          id: "#5091",
-          customer: "Jhon Doe",
-          date: "6 April, 2023",
-          total: "$2,564",
-          state: "Completed",
-          method: "CC",
-        },
-        {
-          id: "#5092",
-          customer: "Joseph Wheeler",
-          date: "6 April, 2023",
-          total: "$2,564",
-          state: "Completed",
-          method: "CC",
-        },
 
-        {
-          id: "#5089",
-          customer: "Joseph Wheeler",
-          date: "6 April, 2023",
-          total: "$2,564",
-          state: "Completed",
-          method: "CC",
-        },
-        {
-          id: "#5089",
-          customer: "Joseph Wheeler",
-          date: "6 April, 2023",
-          total: "$2,564",
-          state: "Cancelled",
-          method: "CC",
-        },
-        {
-          id: "#5089",
-          customer: "Joseph Wheeler",
-          date: "6 April, 2023",
-          total: "$2,564",
-          state: "Pending",
-          method: "CC",
-        },
-        {
-          id: "#5089",
-          customer: "Joseph Wheeler",
-          date: "6 April, 2023",
-          total: "$2,564",
-          state: "Pending",
-          method: "CC",
-        },
-        {
-          id: "#5089",
-          customer: "Joseph Wheeler",
-          date: "6 April, 2023",
-          total: "$2,564",
-          state: "Pending",
-          method: "CC",
-        },
-        {
-          id: "#5089",
-          customer: "Joseph Wheeler",
-          date: "6 April, 2023",
-          total: "$2,564",
-          state: "Pending",
-          method: "CC",
-        },
-        {
-          id: "#5089",
-          customer: "Joseph Wheeler",
-          date: "6 April, 2023",
-          total: "$2,564",
-          state: "Completed",
-          method: "CC",
-        },
-        {
-          id: "#5089",
-          customer: "Joseph Wheeler",
-          date: "6 April, 2023",
-          total: "$2,564",
-          state: "Pending",
-          method: "CC",
-        },
-        {
-          id: "#5089",
-          customer: "Joseph Wheeler",
-          date: "6 April, 2023",
-          total: "$2,564",
-          state: "Pending",
-          method: "CC",
-        },
-      ];
+    getDataOnFilter() {
+      const tableArray = this.onData;
       if (this.filterValue === "all") {
         this.loading = true;
         setTimeout(() => {
@@ -375,6 +217,14 @@ export default {
         setTimeout(() => {
           const completedData = tableArray.filter((item) => item.state === "Completed");
           this.tableData = completedData;
+          this.loading = false;
+          this.pageCount = Math.ceil(this.tableData.length / this.itemsPerPage);
+        }, 1000);
+      } else if (this.filterValue === "Pending") {
+        this.loading = true;
+        setTimeout(() => {
+          const pendingData = tableArray.filter((item) => item.state === "Pending");
+          this.tableData = pendingData;
           this.loading = false;
           this.pageCount = Math.ceil(this.tableData.length / this.itemsPerPage);
         }, 1000);
