@@ -11,7 +11,7 @@ export const routes = [
     // route level code-splitting
     // this generates a separate chunk (About.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import('../views/orders/indexView.vue')
+    component: () => import('../views/orders/IndexView.vue')
   },
   {
     path: '/brand',
@@ -19,7 +19,7 @@ export const routes = [
     // route level code-splitting
     // this generates a separate chunk (About.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import('../views/brands/indexView.vue')
+    component: () => import('../views/brands/IndexView.vue')
   },
   {
     path: '/product-list',
@@ -27,7 +27,7 @@ export const routes = [
     // route level code-splitting
     // this generates a separate chunk (About.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import('../views/products/createView.vue')
+    component: () => import('../views/products/IndexVue.vue')
   },
   {
     path: '/product-create',
@@ -35,6 +35,6 @@ export const routes = [
     // route level code-splitting
     // this generates a separate chunk (About.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import('../views/products/createView.vue')
+    component: () => import('../views/products/CreateView.vue')
   }
 ]
