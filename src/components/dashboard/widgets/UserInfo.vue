@@ -17,9 +17,13 @@
         </div>
       </div>
       <div class="w-full sm:w-1/2 sml:w-1/3 relative">
-        <div class="hidden sml:block bg-[#DBDADE] absolute left-0 top-0 w-[1px] h-[calc(100%)]"></div>
-        <div class="hidden sm:block bg-[#DBDADE] absolute right-0 top-0 w-[1px] h-[calc(100%)]"></div>
-        <div class=" sm:px-5">
+        <div
+          class="hidden sml:block bg-[#DBDADE] absolute left-0 top-0 w-[1px] h-[calc(100%)]"
+        ></div>
+        <div
+          class="hidden sm:block bg-[#DBDADE] absolute right-0 top-0 w-[1px] h-[calc(100%)]"
+        ></div>
+        <div class="sm:px-5">
           <h2 class="uppercase text-[#8B909A] text-[13px] mb-2">PERSONAL INFORMATION</h2>
           <div class="text-[#23272E] text-sm">
             <div class="mb-2">

@@ -26,10 +26,10 @@
   </aside>
 </template>
 
-
 <script>
 import upArrowIcon from "../../icons/dashboard/upArrowIcon.vue";
 export default {
+  name: "ProfitChart",
   components: { upArrowIcon },
 };
 </script>

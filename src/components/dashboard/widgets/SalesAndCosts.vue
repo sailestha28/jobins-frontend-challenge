@@ -1,6 +1,6 @@
 <template>
-  <aside class="bg-white rounded-[16px] p-5  overflow-hidden">
-    <div class="flex flex-wrap ">
+  <aside class="bg-white rounded-[16px] p-5 overflow-hidden">
+    <div class="flex flex-wrap">
       <div class="px-4 sml:px-5 sml:pr-9 flex items-center">
         <div class="block w-[74px] h-[74px] relative">
           <img
@@ -33,7 +33,6 @@
 import upArrowIcon from "../../icons/dashboard/upArrowIcon.vue";
 export default {
   components: { upArrowIcon },
-  name: "SaleAndCostsWidget",
+  name: "SalesAndCosts",
 };
 </script>
-
