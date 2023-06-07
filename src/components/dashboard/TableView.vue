@@ -39,7 +39,7 @@
           <VueDatePicker
             class="vue_date_picker"
             placeholder="Filter by date range"
-            v-model="filter.dateRange"
+            v-model="dateRange"
             format="dd MMMM, yyyy - dd MMMM, yyyy"
             range
           />
@@ -169,11 +169,15 @@ export default {
     itemsPerPage: function (newValue, oldValue) {
       this.getDataOnFilter();
     },
+    // dateRange: function (newValue, oldValue) {
+    //   this.filterByDate();
+    // },
   },
   data() {
     return {
       onData: Data,
-      filter: { status: null, search: null, dateRange: null },
+      dateRange: null,
+      filter: { status: null, search: null,  },
       page: 1,
       itemsPerPage: 10,
       perPageOptions: [5, 10, 15, 20, 25, 50],
@@ -277,6 +281,22 @@ export default {
       }
        
     },
+    filterByDate(){
+         const tableArray = this.onData;
+//       if(this.dateRange != null){
+//           this.loading = true;
+//            setTimeout(() => {
+//         const startDate = moment(this.dateRange[0]).format('YYYY-MM-DD');
+//         const endDate = moment(this.dateRange[1]).format('YYYY-MM-DD');
+//         // console.log(startDate,endDate);
+//            this.tableData = tableArray.filter(item => {
+//   const itemDate = item.date;
+//   return itemDate >= startDate && itemDate <= endDate;
+//    this.pageCount = Math.ceil(this.tableData.length / this.itemsPerPage);
+//           this.loading = false;  }, 1000);
+// });
+//       }
+    }      
   },
 };
 </script>
