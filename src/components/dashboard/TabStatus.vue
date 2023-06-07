@@ -16,6 +16,7 @@
 <script>
 import TableView from "./TableView.vue";
 export default {
+  name:"TabStatus",
   components: {
     TableView,
   },
