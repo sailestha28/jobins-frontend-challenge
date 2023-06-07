@@ -18,3 +18,13 @@
     </main>
   </div>
 </template>
+
+<script>
+import TopBar from "@/components/topbar/TopBar.vue";
+import SideBar from "@/components/sidebar/SideBar.vue";
+
+export default {
+  name: "LayoutDefult",
+  components: { TopBar, SideBar },
+};
+</script>

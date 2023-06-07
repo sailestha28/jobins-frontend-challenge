@@ -38,7 +38,7 @@
                   </template>
                   <template v-else>
                     <red-down-arrow />
-                       <span class="text-[#EA5455]">
+                    <span class="text-[#EA5455]">
                       {{ item.value }}
                       %
                     </span>

@@ -1,7 +1,9 @@
-<script setup>
-import Layouts from './layouts/layouts.vue'
-
-</script>
 <template>
-  <Layouts />
+  <LayoutDefault />
 </template>
+<script>
+import LayoutDefault from "./layouts/LayoutDefault.vue";
+export default {
+  components: { LayoutDefault },
+};
+</script>

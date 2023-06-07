@@ -2,10 +2,10 @@
   <section>
     <div class="flex gap-3 flex-wrap sml:flex-nowrap">
       <div class="w-full sm:w-1/2 sml:w-[40%] xxxl:w-[35%]">
-        <SaleAndCostsWidget />
+        <SalesAndCosts />
       </div>
       <div class="w-full sm:w-[calc(50%-12px)] sml:w-[25%]">
-        <ProfitWidget />
+        <ProfitChart />
       </div>
       <div class="w-full sml:w-[35%] xxxl:w-[40%]">
         <CountryChart />
@@ -17,24 +17,24 @@
     <TabStatus :tabVal="tabValue" />
   </section>
 </template>
-<script setup>
-import SaleAndCostsWidget from '../../components/dashboard/widgets/SaleAndCostsWidget.vue'
-import ProfitWidget from '../../components/dashboard/widgets/profitWidget.vue'
-import CountryChart from '../../components/dashboard/widgets/CountryChart.vue'
-import UserInfo from '../../components/dashboard/widgets/UserInfo.vue'
-import TabStatus from '../../components/dashboard/TabStatus.vue'
-</script>
 <script>
+import TabStatus from "@/components/dashboard/TabStatus.vue";
+import UserInfo from "@/components/dashboard/widgets/UserInfo.vue";
+import CountryChart from "@/components/dashboard/widgets/CountryChart.vue";
+import ProfitChart from "@/components/dashboard/widgets/ProfitChart.vue";
+import SalesAndCosts from "@/components/dashboard/widgets/SalesAndCosts.vue";
 export default {
+  name: "DashboardView",
+  components: { TabStatus, UserInfo, CountryChart, ProfitChart, SalesAndCosts },
   data() {
     return {
-      tabValue: 'all'
-    }
+      tabValue: "all",
+    };
   },
   methods: {
     setTabValue(data) {
-      this.tabValue = data
-    }
-  }
-}
+      this.tabValue = data;
+    },
+  },
+};
 </script>
