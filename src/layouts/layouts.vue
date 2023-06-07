@@ -1,7 +1,3 @@
-<script setup>
-import TopBar from "../components/topBar/topBar.vue";
-import SideBar from "../components/sideBar/sideBar.vue";
-</script>
 <template>
   <div class="bg-[#F5F5F5] h-[100vh]">
     <SideBar />
