@@ -2,7 +2,7 @@ export const Data = [
         {
           id: "#5089",
           customer: "Hary Doe",
-          date: "6 April, 2023",
+          date: "2023-06-01",
           total: "$2,564",
           state: "Pending",
           method: "CC",
@@ -10,7 +10,7 @@ export const Data = [
         {
           id: "#5090",
           customer: "Gary Xin",
-          date: "6 April, 2023",
+          date: "2023-06-02",
           total: "$2,564",
           state: "Cancelled",
           method: "CC",
@@ -18,7 +18,7 @@ export const Data = [
         {
           id: "#5089",
           customer: "Loren Doe",
-          date: "6 April, 2023",
+          date: "2023-06-03",
           total: "$2,564",
           state: "Pending",
           method: "CC",
@@ -26,7 +26,7 @@ export const Data = [
         {
           id: "#5090",
           customer: "Josh Xin",
-          date: "6 April, 2023",
+          date: "2023-06-04",
           total: "$2,564",
           state: "Cancelled",
           method: "CC",
@@ -34,7 +34,7 @@ export const Data = [
         {
           id: "#5089",
           customer: "Henry Doe",
-          date: "6 April, 2023",
+          date: "2023-06-05",
           total: "$2,564",
           state: "Completed",
           method: "CC",
@@ -42,7 +42,7 @@ export const Data = [
         {
           id: "#5090",
           customer: "Twelve Xin",
-          date: "6 April, 2023",
+          date: "2023-06-06",
           total: "$2,564",
           state: "Cancelled",
           method: "CC",
@@ -50,7 +50,7 @@ export const Data = [
         {
           id: "#5089",
           customer: "one Doe",
-          date: "6 April, 2023",
+          date: "2023-06-07",
           total: "$2,564",
           state: "Cancelled",
           method: "CC",
@@ -58,7 +58,7 @@ export const Data = [
         {
           id: "#5090",
           customer: "Two Xin",
-          date: "6 April, 2023",
+          date: "2023-06-08",
           total: "$2,564",
           state: "Cancelled",
           method: "CC",
@@ -66,7 +66,7 @@ export const Data = [
         {
           id: "#5089",
           customer: "Three Doe",
-          date: "6 April, 2023",
+          date: "2023-06-09",
           total: "$2,564",
           state: "Pending",
           method: "CC",
@@ -74,7 +74,7 @@ export const Data = [
         {
           id: "#5090",
           customer: "Foun Xin",
-          date: "6 April, 2023",
+          date: "2023-06-11",
           total: "$2,564",
           state: "Cancelled",
           method: "CC",
@@ -82,7 +82,7 @@ export const Data = [
         {
           id: "#5091",
           customer: "Son Doe",
-          date: "6 April, 2023",
+          date: "2023-06-12",
           total: "$2,564",
           state: "Completed",
           method: "CC",
@@ -90,7 +90,7 @@ export const Data = [
         {
           id: "#5092",
           customer: "Joseph Wheeler",
-          date: "6 April, 2023",
+          date: "2023-06-12",
           total: "$2,564",
           state: "Completed",
           method: "CC",
@@ -99,7 +99,7 @@ export const Data = [
         {
           id: "#5089",
           customer: "Joseph muler",
-          date: "6 April, 2023",
+          date: "2023-06-12",
           total: "$2,564",
           state: "Completed",
           method: "CC",
@@ -107,7 +107,7 @@ export const Data = [
         {
           id: "#5089",
           customer: "Joseph Wheeler",
-          date: "6 April, 2023",
+          date: "2023-06-01",
           total: "$2,564",
           state: "Cancelled",
           method: "CC",
@@ -115,7 +115,7 @@ export const Data = [
         {
           id: "#5089",
           customer: "Joseph Wheeler",
-          date: "6 April, 2023",
+          date: "2023-06-02",
           total: "$2,564",
           state: "Pending",
           method: "CC",
@@ -123,7 +123,7 @@ export const Data = [
         {
           id: "#5089",
           customer: "Joseph Wheeler",
-          date: "6 April, 2023",
+          date: "2023-06-04",
           total: "$2,564",
           state: "Cancelled",
           method: "CC",
@@ -131,7 +131,7 @@ export const Data = [
         {
           id: "#5089",
           customer: "Joseph Wheeler",
-          date: "6 April, 2023",
+          date: "2023-06-06",
           total: "$2,564",
           state: "Pending",
           method: "CC",
@@ -139,7 +139,7 @@ export const Data = [
         {
           id: "#5089",
           customer: "Joseph Wheeler",
-          date: "6 April, 2023",
+          date: "2023-06-08",
           total: "$2,564",
           state: "Pending",
           method: "CC",
@@ -147,7 +147,7 @@ export const Data = [
         {
           id: "#5089",
           customer: "Joseph Wheeler",
-          date: "6 April, 2023",
+          date: "2023-06-10",
           total: "$2,564",
           state: "Completed",
           method: "CC",
@@ -155,7 +155,7 @@ export const Data = [
         {
           id: "#5089",
           customer: "Joseph Wheeler",
-          date: "6 April, 2023",
+          date: "2023-06-12",
           total: "$2,564",
           state: "Cancelled",
           method: "CC",
@@ -163,7 +163,7 @@ export const Data = [
         {
           id: "#5089",
           customer: "Joseph Wheeler",
-          date: "6 April, 2023",
+          date: "2023-06-12",
           total: "$2,564",
           state: "Pending",
           method: "CC",
