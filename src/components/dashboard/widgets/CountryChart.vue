@@ -6,7 +6,20 @@
           <div class="flex gap-x-4 items-center">
             <div class="block w-[34px] h-[34px] relative rounded-full overflow-hidden">
               <img
-                :src="item.image"
+                v-if="item.country === 'Brazil'"
+                src="/src/assets/images/dashboard/brazil.png"
+                alt="total profit"
+                class="absolute left-0 right-0 top-0 bottom-0 object-cover"
+              />
+              <img
+                 v-if="item.country === 'United States'"
+                   src="/src/assets/images/dashboard/usa.png"
+                alt="total profit"
+                class="absolute left-0 right-0 top-0 bottom-0 object-cover"
+              />
+              <img
+              v-if="item.country === 'Australia'"
+              src="/src/assets/images/dashboard/australia.png"
                 alt="total profit"
                 class="absolute left-0 right-0 top-0 bottom-0 object-cover"
               />
