@@ -12,14 +12,14 @@
                 class="absolute left-0 right-0 top-0 bottom-0 object-cover"
               />
               <img
-                 v-if="item.country === 'United States'"
-                   src="/src/assets/images/dashboard/usa.png"
+                v-if="item.country === 'United States'"
+                src="/src/assets/images/dashboard/usa.png"
                 alt="total profit"
                 class="absolute left-0 right-0 top-0 bottom-0 object-cover"
               />
               <img
-              v-if="item.country === 'Australia'"
-              src="/src/assets/images/dashboard/australia.png"
+                v-if="item.country === 'Australia'"
+                src="/src/assets/images/dashboard/australia.png"
                 alt="total profit"
                 class="absolute left-0 right-0 top-0 bottom-0 object-cover"
               />
