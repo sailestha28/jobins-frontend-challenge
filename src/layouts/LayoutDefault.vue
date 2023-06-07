@@ -11,7 +11,7 @@
           : 'xlg:ml-[110px] xlg:w-[calc(100%-110px)]',
       ]"
     >
-      <!-- <TopBar /> -->
+      <TopBar />
       <div class="mb-5 sm:mb-7">
         <router-view></router-view>
       </div>
@@ -21,10 +21,10 @@
 
 <script>
 import TopBar from "@/components/topbar/TopBar.vue";
-// import SideBar from "@/components/sidebar/SideBar.vue";
+import SideBar from "@/components/sidebar/SideBar.vue";
 
 export default {
-  name: "LayoutDefult",
-  components: {  SideBar },
+  name: "LayoutDefault",
+  components: { TopBar, SideBar },
 };
 </script>
