@@ -50,8 +50,7 @@ export default {
   },
   methods: {
     submit() {
-      alert('Product title:' ,this.form.name
-     );
+      alert("Product title:", this.form.name);
     },
   },
 };

@@ -153,7 +153,7 @@ import moment from "moment";
 import { VDataTable } from "vuetify/labs/VDataTable";
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
-import { Product } from "@/Data/product.js";
+import { Product } from "@/data/product.js";
 
 export default {
   name: "ProductList",
