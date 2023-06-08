@@ -96,17 +96,18 @@
         </span>
       </template>
       <template v-slot:item.status="{ item }">
-        <span :class="[ item.selectable.status === 'Disabled'? 'text-[#EA5455]' : null,
-          item.selectable.status === 'Active' ? 'text-[#28C76F]' : null
-        ]">
-        {{item.selectable.status}}
+        <span
+          :class="[
+            item.selectable.status === 'Disabled' ? 'text-[#EA5455]' : null,
+            item.selectable.status === 'Active' ? 'text-[#28C76F]' : null,
+          ]"
+        >
+          {{ item.selectable.status }}
         </span>
-      
       </template>
 
       <template v-slot:item.date="{ item }">
         <div class="flex gap-x-1">
-          
           {{ formatDate(item?.selectable?.date) }}
         </div>
       </template>
@@ -183,7 +184,7 @@ export default {
         { title: "Brand Title", align: "start", key: "name" },
         { title: "Created Date", align: "start", key: "date", width: "135px" },
         { title: "Status", align: "start", key: "status", width: "140px" },
-        { title: "Action", align: "start", key: "action" },
+        { title: "Action", align: "start", key: "action", width: "140px" },
       ],
       statusData: ["All", "Active", "Disabled"],
       tableData: Brand,

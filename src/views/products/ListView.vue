@@ -184,7 +184,7 @@ export default {
         { title: "Date", align: "start", key: "date", width: "135px" },
         { title: "Total", align: "start", key: "total", width: "115px" },
         { title: "Status", align: "start", key: "status", width: "140px" },
-        { title: "Action", align: "start", key: "action" },
+        { title: "Action", align: "start", key: "action", width: "200px" },
       ],
       statusData: ["All", "Active", "Disabled"],
       tableData: Product,
