@@ -29,7 +29,11 @@ yarn dev
 ```sh
 yarn build
 ```
+### Compile and Minify for Production
 
+```sh
+yarn preview
+```
 ### Lint with [ESLint](https://eslint.org/)
 
 ```sh
