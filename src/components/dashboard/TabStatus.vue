@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <v-window v-model="tab" touchless>
+    <v-window v-model="tab" :touch="false">
       <v-window-item value="all">
         <TableView :column="headers" :filterValue="tab" />
       </v-window-item>
@@ -16,7 +16,7 @@
 <script>
 import TableView from "./TableView.vue";
 export default {
-  name:"TabStatus",
+  name: "TabStatus",
   components: {
     TableView,
   },
@@ -52,6 +52,5 @@ export default {
       ],
     };
   },
-  methods: {},
 };
 </script>
