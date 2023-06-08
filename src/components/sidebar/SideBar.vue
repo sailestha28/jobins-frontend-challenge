@@ -95,7 +95,7 @@ export default {
       isMenuOpen
         ? 'translate-x-[-110%] xlg:translate-x-0 w-[260px] xlg:w-[110px]'
         : 'w-[260px] xlg:translate-x-0',
-      ' fixed top-0 left-0 h-full z-10 bg-white transition-all duration-500 shadow-[0px_0_15px_0px_#0000002b] xlg:shadow-none',
+      ' fixed top-0 z-20 left-0 h-full bg-white transition-all duration-500 shadow-[0px_0_15px_0px_#0000002b] xlg:shadow-none',
     ]"
   >
     <div class="min-w-[110px] overflow-hidden">
@@ -141,7 +141,51 @@ export default {
           </div>
         </div>
       </div>
-      <ul class="overflow-x-hidden overflow-y-auto h-[calc(100vh-74px)]">
+      <ul class="overflow-x-hidden overflow-y-auto h-[calc(100vh-74px)] hidden xlg:block">
+        <li
+          v-for="(item, index) in menu"
+          :key="index"
+          :class="[
+            'px-[14px] text-[#8B909A]',
+            item.link == null
+              ? `text-[11px] py-4 uppercase  ${!isMenuOpen ? ' pl-8' : 'pl-4'}`
+              : 'capitalize  mb-2 whitespace-nowrap',
+          ]"
+        >
+          <span v-if="item.link == null">
+            {{ item.title }}
+          </span>
+          <router-link
+            v-else
+            :to="item.link"
+            :class="[
+              'nav-item',
+              ' items-center px-4 py-2 hover:text-[#23272E] hover:stroke-black',
+              !isMenuOpen ? 'flex gap-x-2' : 'inline-flex',
+            ]"
+          >
+            <span :class="'icon ' + item.icon">
+              <template v-if="item.icon === 'icon_dashboard'">
+                <DashboardIcon />
+              </template>
+              <template v-if="item.icon === 'order'">
+                <OrderIcon />
+              </template>
+              <template v-if="item.icon === 'brand'">
+                <BrandIcon />
+              </template>
+              <template v-if="item.icon === 'product_add'">
+                <ProductAddIcon />
+              </template>
+              <template v-if="item.icon === 'product_list'">
+                <ProductBoxIcon />
+              </template>
+            </span>
+            <span class="link_text" v-if="!isMenuOpen"> {{ item.title }}</span>
+          </router-link>
+        </li>
+      </ul>
+      <ul class="overflow-x-hidden overflow-y-auto h-[calc(100vh-74px)] xlg:hidden">
         <li
           v-for="(item, index) in menu"
           :key="index"

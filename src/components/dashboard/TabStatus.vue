@@ -1,14 +1,21 @@
 <template>
-  <div class="">
-    <v-window v-model="tab" :touch="false">
+  <div class="relative z-10">
+    <v-window v-model="tab" :touch="false" class="overflow-visible">
       <v-window-item value="all">
+        <div class="mt-3">
         <TableView :column="headers" :filterValue="tab" />
+        </div>
       </v-window-item>
       <v-window-item value="completed" :filterValue="tab">
+        <div class="mt-3">
         <TableView :column="headers" :filterValue="tab" />
+            </div>
       </v-window-item>
       <v-window-item value="cancelled">
+        <div class="mt-3">
+
         <TableView :column="headers" :filterValue="tab" />
+        </div>
       </v-window-item>
     </v-window>
   </div>
