@@ -29,7 +29,7 @@ yarn dev
 ```sh
 yarn build
 ```
-### Compile and Minify for Production
+### Preview
 
 ```sh
 yarn preview
