@@ -66,7 +66,13 @@
         </ul>
       </div>
     </div>
-    <v-tabs v-model="tab" align-with-title :swipeable="false" class="mt-3 sml:mt-2">
+    <v-tabs
+      v-model="tab"
+      align-with-title
+      :scroll-offset="0"
+      hide-slider
+      class="mt-3 sml:mt-2"
+    >
       <v-tab value="all">All Orders</v-tab>
       <v-tab value="completed">Completed</v-tab>
       <v-tab value="cancelled">Cancelled</v-tab>

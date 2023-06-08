@@ -12,7 +12,10 @@
             class="normal-v-select"
           >
             <template v-slot:item="{ item, props }">
-              <v-list-item v-bind="props"   @click.prevent="()=>getDataOnStatus(filter.status)">
+              <v-list-item
+                v-bind="props"
+                @click.prevent="() => getDataOnStatus(filter.status)"
+              >
                 <template v-slot:title>
                   {{ item.raw }}
                 </template>
@@ -30,7 +33,7 @@
             placeholder="Search"
             single-line
             hide-details
-             @change.prevent="()=>getDataOnSearch(filter.search)"
+            @change.prevent="() => getDataOnSearch(filter.search)"
           ></v-text-field>
         </div>
       </div>
@@ -40,9 +43,11 @@
             class="vue_date_picker"
             placeholder="Filter by date range"
             v-model="dateRange"
-            format="dd MMMM, yyyy - dd MMMM, yyyy"
+            format="dd MMMM, yyyy"
             range
+            @cleared="() => filterByDate"
           />
+          <!-- <VueDatePicker v-model="date" format="dd MMMM, yyyy " range></VueDatePicker> -->
         </div>
       </div>
     </div>
@@ -104,8 +109,8 @@
 
       <template v-slot:item.date="{ item }">
         <div class="flex gap-x-1">
-        <!-- {{ item?.selectable?.date | formatDate }} -->
-        {{ formatDate(item?.selectable?.date)  }}
+          <!-- {{ item?.selectable?.date | formatDate }} -->
+          {{ formatDate(item?.selectable?.date) }}
         </div>
       </template>
       <template v-slot:item.action="{ item }">
@@ -147,7 +152,7 @@
 </template>
 
 <script>
- import moment from 'moment';
+import moment from "moment";
 import { VDataTable } from "vuetify/labs/VDataTable";
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
@@ -159,25 +164,13 @@ export default {
     VDataTable,
     VueDatePicker,
   },
-  watch: {
-    column: function (newValue, oldValue) {
-      this.headers = newValue;
-    },
-    filterValue: function (newValue, oldValue) {
-      this.getDataOnFilter();
-    },
-    itemsPerPage: function (newValue, oldValue) {
-      this.getDataOnFilter();
-    },
-    // dateRange: function (newValue, oldValue) {
-    //   this.filterByDate();
-    // },
-  },
+
   data() {
     return {
       onData: Data,
+      date: null,
       dateRange: null,
-      filter: { status: null, search: null,  },
+      filter: { status: null, search: null },
       page: 1,
       itemsPerPage: 10,
       perPageOptions: [5, 10, 15, 20, 25, 50],
@@ -188,17 +181,31 @@ export default {
       pageCount: null,
     };
   },
+  watch: {
+    column: function (newValue, oldValue) {
+      this.headers = newValue;
+    },
+    filterValue: function (newValue, oldValue) {
+      this.getDataOnFilter();
+    },
+    itemsPerPage: function (newValue, oldValue) {
+      this.getDataOnFilter();
+    },
+    dateRange: function (newValue, oldValue) {
+      this.filterByDate();
+    },
+  },
   mounted() {
     this.getDataOnFilter();
   },
 
   methods: {
     formatDate(value) {
-   if (!value) return '';
-        return moment(String(value)).format("D MMMM, YYYY");
-  },
+      if (!value) return "";
+      return moment(String(value)).format("D MMMM, YYYY");
+    },
     onSearch() {
-            setTimeout(() => {
+      setTimeout(() => {
         const filterData = this.onData.filter((item) =>
           item.customer.toLowerCase().includes(this.filter.search.toLowerCase())
         );
@@ -250,53 +257,62 @@ export default {
         }, 1000);
       }
     },
-     getDataOnStatus(filterByValue) {
+    getDataOnStatus(filterByValue) {
       const tableArray = this.onData;
-         this.loading = true;
-         if(filterByValue.toLowerCase() === 'all'){
-           setTimeout(() => {
+      this.loading = true;
+      if (filterByValue.toLowerCase() === "all") {
+        setTimeout(() => {
           this.tableData = tableArray;
           this.loading = false;
           this.pageCount = Math.ceil(this.tableData.length / this.itemsPerPage);
         }, 1000);
-      }else{
-            setTimeout(() => {
-          const filterData = this.onData.filter((item) => item.state.toLowerCase() === filterByValue.toLowerCase());
+      } else {
+        setTimeout(() => {
+          const filterData = this.onData.filter(
+            (item) => item.state.toLowerCase() === filterByValue.toLowerCase()
+          );
           this.tableData = filterData;
           this.pageCount = Math.ceil(this.tableData.length / this.itemsPerPage);
           this.loading = false;
         }, 1000);
       }
-       
     },
-     getDataOnSearch(filterByValue) {
-      if(filterByValue != "" || filterByValue != null){
+    getDataOnSearch(filterByValue) {
+      if (filterByValue != "" || filterByValue != null) {
         const tableArray = this.onData;
         this.loading = true;
         setTimeout(() => {
-          this.tableData = this.onData.filter((item) => item.customer.toLowerCase().includes(filterByValue.toLowerCase()));
+          this.tableData = this.onData.filter((item) =>
+            item.customer.toLowerCase().includes(filterByValue.toLowerCase())
+          );
           this.pageCount = Math.ceil(this.tableData.length / this.itemsPerPage);
           this.loading = false;
         }, 1000);
       }
-       
     },
-    filterByDate(){
-         const tableArray = this.onData;
-//       if(this.dateRange != null){
-//           this.loading = true;
-//            setTimeout(() => {
-//         const startDate = moment(this.dateRange[0]).format('YYYY-MM-DD');
-//         const endDate = moment(this.dateRange[1]).format('YYYY-MM-DD');
-//         // console.log(startDate,endDate);
-//            this.tableData = tableArray.filter(item => {
-//   const itemDate = item.date;
-//   return itemDate >= startDate && itemDate <= endDate;
-//    this.pageCount = Math.ceil(this.tableData.length / this.itemsPerPage);
-//           this.loading = false;  }, 1000);
-// });
-//       }
-    }      
+    filterByDate() {
+      const tableArray = this.onData;
+      if (this.dateRange != null) {
+        this.loading = true;
+        setTimeout(() => {
+          const startDate = moment(this.dateRange[0]).format("YYYY-MM-DD");
+          const endDate = moment(this.dateRange[1]).format("YYYY-MM-DD");
+          this.tableData = tableArray.filter((item) => {
+            const itemDate = item.date;
+            return itemDate >= startDate && itemDate <= endDate;
+          });
+          this.pageCount = Math.ceil(this.tableData.length / this.itemsPerPage);
+          this.loading = false;
+        }, 1000);
+      } else {
+        this.loading = true;
+        setTimeout(() => {
+          this.tableData = tableArray;
+          this.loading = false;
+          this.pageCount = Math.ceil(this.tableData.length / this.itemsPerPage);
+        }, 1000);
+      }
+    },
   },
 };
 </script>
