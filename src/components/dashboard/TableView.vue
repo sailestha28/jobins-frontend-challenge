@@ -156,7 +156,7 @@ import moment from "moment";
 import { VDataTable } from "vuetify/labs/VDataTable";
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
-import { Data } from "@/Data/data.js";
+import { Data } from "@/data/data.js";
 
 export default {
   props: { column: Array, filterValue: String },
